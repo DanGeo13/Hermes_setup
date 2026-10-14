@@ -1,0 +1,19 @@
+# Add this to ~/.hermes/config.yaml (merge it into any existing `tts:` section).
+# It tells Hermes to speak its replies with your Voicebox voice.
+
+tts:
+  provider: voicebox
+  providers:
+    voicebox:
+      type: command
+      # Change the path if you cloned Hermes_setup somewhere other than your home folder.
+      command: "python3 ~/Hermes_setup/voice/voicebox_tts.py {input_path} {output_path} --voice {voice}"
+      # Your Voicebox voice id. Find it with:
+      #   python3 ~/Hermes_setup/voice/voicebox_tts.py --list-voices
+      voice: "PASTE-YOUR-VOICE-ID-HERE"
+      output_format: wav
+      # Hermes turns the WAV into a Telegram voice bubble (needs ffmpeg).
+      voice_compatible: true
+      # Seconds of silence before Hermes gives up. The first reply can be slow
+      # while Voicebox loads its model.
+      timeout: 180
